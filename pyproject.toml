@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "eventum-asgi"
+version = "0.0.1"
+description = "Websockets ASGI framework as simple as it it."
+authors = ["gaulix <vlnazarenko1199@gmail.com>"]
+license = "LICENSE.txt"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+orjson = "^3.10.7"
+pydantic = "^2.9.2"
+uvicorn = {extras = ["standard"], version = "^0.31.0"}
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.3"
+pytest-asyncio = "^0.24.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
