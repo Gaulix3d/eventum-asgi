@@ -193,6 +193,15 @@ class WSConnection:
         - Any: The value of the flag, or None if the flag is not set.
         """
         return self.__flags.get(name)
+    
+    def get_all_flags(self) -> Dict[Any, Any]:
+        """
+        Get all flags.
+        
+        Returns:
+        - Dict[Any, Any]: A dictionary of all flags as a copy.
+        """
+        return self.__flags.copy()
 
     def add_flag(self, name: Any, value: Any) -> None:
         """
@@ -221,8 +230,12 @@ class WSConnection:
         - name (Any): The name of the flag to remove.
         """
         self.__flags.pop(name)
+    
+    def remove_flags(self, names: List[str]) -> None:
+        for name in names:
+            self.__flags.pop(name, None)
 
-    def remove_all_flags(self) -> None:
+    def clear_flags(self) -> None:
         """
         Remove all flags.
         """

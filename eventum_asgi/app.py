@@ -67,6 +67,7 @@ class Eventum:
             connection = WSConnection(scope=scope, receive=receive, send=send)
             await self.middleware_stack(connection)
             await self.event_loop.handle_connection(connection)
+            
     def lifespan_event(self,
                        event_type: Literal['startup', 'shutdown']
                        ) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
