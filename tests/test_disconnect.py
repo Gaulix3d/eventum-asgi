@@ -64,7 +64,7 @@ async def test_disconnect_server_with_error():
 
     @app.event('message')
     async def on_message(connection: WSConnection, event: Event):
-        await connection.close(3000, 'Test disconnect')
+        await connection.close(code=3000, reason='Test disconnect')
     
     client = TestClient(app)
     async with client:
