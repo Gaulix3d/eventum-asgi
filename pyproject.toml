@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "eventum-asgi"
-version = "0.0.1"
+version = "0.0.2"
 description = "Websockets ASGI framework as simple as it it."
 authors = ["gaulix <vlnazarenko1199@gmail.com>"]
 license = "LICENSE.txt"

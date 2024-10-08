@@ -33,17 +33,10 @@ from eventum_asgi import Eventum, WSConnection, Event
 
 app = Eventum()
 
-# This function defines a simple WebSocket connection handler to perform the handshake, later, the connection gets into a loop and waits for a client to send an event.
 @app.handshake_route('/')
 async def websocket_handler(connection: WSConnection):
     await connection.accept()
 
-# This function defines a simple event handler to handle the event sent by the client. All the events should be in the form of a json object in order for event handlers to proccess them. In this case an event might look like this:
-# {
-#     "event": "user_registered",
-#     "username": "user_1", 
-#     "password": "password_1"
-# }
 @app.event('user_registered')
 async def message_handler(connection: WSConnection, event: dict):
     await connection.send_text(f"You said: {message}")
@@ -52,3 +45,43 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
+
+## Handshake Routes
+Handshake routes are used to handle WebSocket handshakes. They are defined using the `handshake_route` decorator and are responsible for accepting the WebSocket connection and sending the handshake response as well adding a connection to the loop where the application is waiting for events to be sent by the client.
+
+```python
+@app.handshake_route('/')
+async def websocket_handler(connection: WSConnection):
+    await connection.accept()
+```
+
+## Event Routes
+Event routes are used to handle events sent by the client. They are defined using the `event` decorator and are responsible for handling the event and sending a response back to the client(optinal). All the events should be defined and send as JSON objects and contain an event name.
+
+### JSON
+```json
+{
+    "event": "user_registered",
+    "data": {
+        "username": "johndoe",
+        "email": "johndoe@example.com",
+        "password": "password123"
+    }
+}
+```
+
+### Event decorator
+```python
+@app.event('user_registered')
+async def message_handler(connection: WSConnection, event: dict):
+    await connection.send_text(f"You said: {message}")
+```
+
+## Documentation
+For more detailed information on how to use Eventum ASGI, please refer to our documentation (coming soon).
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+This project is licensed under the MIT License - see the LICENSE.txt file for details.
