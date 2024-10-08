@@ -78,7 +78,7 @@ async def message_handler(connection: WSConnection, event: dict):
 ```
 
 ## Documentation
-For more detailed information on how to use Eventum ASGI, please refer to our documentation (coming soon).
+For more detailed information on how to use Eventum ASGI, please refer to our documentation https://gaulix3d.github.io/mkdocs-eventum/.
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
