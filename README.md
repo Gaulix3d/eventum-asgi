@@ -39,7 +39,7 @@ async def websocket_handler(connection: WSConnection):
 
 @app.event('user_registered')
 async def message_handler(connection: WSConnection, event: dict):
-    await connection.send_text(f"You said: {message}")
+    await connection.send_text(f"The event is: {event}")
 
 if __name__ == "__main__":
     import uvicorn
@@ -74,7 +74,7 @@ Event routes are used to handle events sent by the client. They are defined usin
 ```python
 @app.event('user_registered')
 async def message_handler(connection: WSConnection, event: dict):
-    await connection.send_text(f"You said: {message}")
+    await connection.send_text(f"The event is: {event}")
 ```
 
 ## Documentation
